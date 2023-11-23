@@ -3,3 +3,6 @@ build:
 
 run: 
 	go run cmd/app/main.go
+
+migrate:
+	migrate create -ext sql -dir internals/database/migrations/ -seq init_migration
