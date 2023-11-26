@@ -17,6 +17,8 @@ migrate-up:
 migrate-down:
 	migrate -path $(FILEPATH) -database "$(URL)" -verbose down
 
+sqlc:
+	sqlc generate
 
 
-.PHONY: build run migrate migrate-up migrate-down
+.PHONY: build run migrate migrate-up migrate-down sqlc

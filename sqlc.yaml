@@ -2,10 +2,16 @@ version: '2'
 cloud:
   project: '01HG48TCHETBK2DTS4T70YZ7J6'
 sql:
-- schema: "./database/migrations/"
-  queries: "./database/query/"
+- schema: "./internals/database/migrations/"
+  queries: "./internals/database/query/"
   engine: postgresql
   database:
     managed: true
+  gen:
+    go:
+      package: "db"
+      out: "./internals/database/db"
+      sql_package: "pgx/v5"
+      emit_json_tags: true
   rules:
   - sqlc/db-prepare
