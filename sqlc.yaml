@@ -1,0 +1,11 @@
+version: '2'
+cloud:
+  project: '01HG48TCHETBK2DTS4T70YZ7J6'
+sql:
+- schema: "./database/migrations/"
+  queries: "./database/query/"
+  engine: postgresql
+  database:
+    managed: true
+  rules:
+  - sqlc/db-prepare
