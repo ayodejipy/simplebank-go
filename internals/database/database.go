@@ -7,13 +7,13 @@ import (
 	"github.com/ayodejipy/simple-bank-go/internals/config"
 )
 
-type DB struct {
-	db
+type DBCon struct {
+	db *sql.DB
 }
 
 
-func InitDBConnection(config config.Config)  {
-	connectionString := fmt.Sprintf("postgresql://postgres:admin123@localhost:5432/simplebank?sslmode=disable")
+func InitDBConnection(config *config.Config) (*DBCon)  {
+	connectionString := fmt.Sprintf("postgresql://%v:%v@%v:%v/simplebank?sslmode=disable", config.User, config.Password, config.Host, config.Port)
 	db, err := sql.Open("postgres", connectionString)
 
 	if err != nil {
@@ -27,4 +27,6 @@ func InitDBConnection(config config.Config)  {
 	}
 
 	fmt.Println("Database connected successfully!.")
+
+	return &DBCon{ db }
 }
